@@ -4,7 +4,6 @@
 
 | 技能名 | 触发关键字 | 使用场景 | 功能描述 |
 |---|---|---|---|
-| allstack | real-time-fund, Next.js, Supabase, Glassmorphism | real-time-fund 项目技术栈 | 理解 real-time-fund 项目完整技术栈，包括 Next.js 前端、JSONP 数据获取、Supabase 认证、Docker 部署和 Glassmorphism UI 设计系统 |
 | brainstorming | 创建功能, 添加功能, 修改行为, 构建组件 | 任何创意工作之前 | 在创建功能、构建组件、添加功能或修改行为之前必须使用。探索用户意图、需求和设计，然后再实施 |
 | coding-agent | 构建新功能, PR review, 大规模重构, 迭代式编码 | 需要委托子代理执行复杂编码任务 | 通过后台进程委托 Codex、Claude Code 或 Pi 代理处理编码任务。适用于构建新功能、审查 PR、重构大型代码库 |
 | cls-news-monitor | 财联社新闻, 财经新闻, 新闻查询, 新闻汇总 | 查询或汇总财联社金融新闻 | 使用本地 cls-cli 项目从 https://www.cls.cn/ 查询或汇总财经新闻 |
@@ -14,7 +13,6 @@
 | dispatching-parallel-agents | 并行任务, 独立任务, 多任务 | 面对两个或以上可独立并行处理的任务 | 当面对两个或以上可以无共享状态或顺序依赖关系独立工作的任务时使用 |
 | docs-review | 文档评审, markdown diff, 文档 PR | 审阅文档变更质量 | 根据 Metabase 写作风格指南审查文档变更。用于审查包含文档 markdown 文件的 PR、文件或差异 |
 | docs-writer | 写文档, 改文档, docs 目录, .md 文件 | 在仓库内编写或修改文档 | 任务涉及在 `/docs` 目录编写、审查或编辑文件或仓库中任何 `.md` 文件时始终使用此技能 |
-| doc | .docx, 文档格式, 布局保真 | 读取、创建或编辑 .docx 文档 | 当任务涉及读取、创建或编辑 `.docx` 文档，特别是格式或布局保真度很重要时使用 |
 | docx | Word, .docx, 报告, memo, 模板 | 处理 Word 文档输入输出 | 创建、读取、编辑或操作 Word 文档（.docx 文件）。支持提取内容、插入图片、查找替换、处理修订和批注 |
 | executing-plans | 执行计划, 实施计划, 检查点 | 有书面实施计划需要在独立会话中执行 | 当您有书面实施计划需要在带有审查检查点的独立会话中执行时使用 |
 | fact-checker | fact check, verify, 真假核验, 辟谣 | 核查事实真伪 | 基于证据进行事实验证和来源可信度评估 |
@@ -26,8 +24,6 @@
 | pdf | PDF, 提取文本, 合并, 拆分, OCR | 处理 PDF 文件任务 | 读取或提取 PDF 中的文本/表格、合并或拆分 PDF、旋转页面、添加水印、创建新 PDF、填写 PDF 表单、加密/解密 PDF、提取图片 |
 | receiving-code-review | 接收代码审查, 审查反馈, 技术审查 | 接收代码审查反馈时 | 在实施代码审查反馈之前使用，特别是当反馈看起来不清楚或技术上存在疑问时 - 需要技术严谨性和验证 |
 | self-improving-agent | 持续改进, 学习, 错误捕获 | 捕获学习、错误和纠正以实现持续改进 | 捕获学习、错误和纠正以启用持续改进。在命令失败、用户纠正、发现更好方法时使用 |
-| sessions | Agent Sessions, 会话窗口, layering, chat widget | 开发 Agent Sessions 窗口相关功能 | Agent Sessions 窗口架构 - 涵盖 sessions-first 应用、分层、文件夹结构、聊天小部件、菜单、贡献、入口点和开发指南 |
-| receiving-code-review | 接收代码审查, 审查反馈, 技术审查 | 接收代码审查反馈时 | 在实施代码审查反馈之前使用，特别是当反馈看起来不清楚或技术上存在疑问时 - 需要技术严谨性和验证 |
 | sessions | Agent Sessions, 会话窗口, layering, chat widget | 开发 Agent Sessions 窗口相关功能 | Agent Sessions 窗口架构 - 涵盖 sessions-first 应用、分层、文件夹结构、聊天小部件、菜单、贡献、入口点和开发指南 |
 | slide | PPT, 幻灯片, 演示文稿, Markdown 转幻灯片 | 生成演示材料 | 将 Markdown 大纲文档转换为 HTML 幻灯片演示系统 |
 | summarize | 总结, 提炼, transcript, URL 摘要, 视频转写 | 快速摘要文本或音视频内容 | 总结或提取 URL、播客和本地文件的文本/转录（"转录此 YouTube/视频"的绝佳回退方案） |
