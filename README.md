@@ -20,7 +20,6 @@
 | gh-address-comments | PR 评论, 审查评论, GitHub 评论 | 处理 GitHub PR 上的审查/问题评论 | 使用 gh CLI 帮助处理当前分支的开放 GitHub PR 上的审查/问题评论 |
 | gh-fix-ci | GitHub Actions, PR checks, CI 失败 | 定位并修复 PR 检查失败 | 调试或修复在 GitHub Actions 中运行的 GitHub PR 检查失败。使用 `gh` 检查检查和日志 |
 | git-workflow | git, 提交, 分支, PR, Git 工作流 | Git 提交、分支和拉取请求工作流指导 | Git 工作流指导，涵盖提交、分支和拉取请求 |
-| openai-docs | OpenAI, GPT, API 文档, 模型选择 | 使用 OpenAI 产品或 API 构建 | 当用户询问如何使用 OpenAI 产品或 API 构建，需要最新的官方文档和引用 |
 | pdf | PDF, 提取文本, 合并, 拆分, OCR | 处理 PDF 文件任务 | 读取或提取 PDF 中的文本/表格、合并或拆分 PDF、旋转页面、添加水印、创建新 PDF、填写 PDF 表单、加密/解密 PDF、提取图片 |
 | receiving-code-review | 接收代码审查, 审查反馈, 技术审查 | 接收代码审查反馈时 | 在实施代码审查反馈之前使用，特别是当反馈看起来不清楚或技术上存在疑问时 - 需要技术严谨性和验证 |
 | self-improving-agent | 持续改进, 学习, 错误捕获 | 捕获学习、错误和纠正以实现持续改进 | 捕获学习、错误和纠正以启用持续改进。在命令失败、用户纠正、发现更好方法时使用 |
