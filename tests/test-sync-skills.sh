@@ -73,9 +73,9 @@ if ! grep -q "## 开发流程" "$README_FILE"; then
     exit 1
 fi
 
-# 备份文件检查
-if ! ls "$TARGET_DIR"/README.md.bak.* >/dev/null 2>&1; then
-    echo "FAIL: README backup not created"
+# 不应生成 README 备份文件
+if ls "$TARGET_DIR"/README.md.bak.* >/dev/null 2>&1; then
+    echo "FAIL: README backup file should not be created"
     exit 1
 fi
 

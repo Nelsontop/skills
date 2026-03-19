@@ -160,13 +160,6 @@ parse_skill_metadata() {
 }
 
 generate_readme() {
-    local backup_file="$README_FILE.bak.$(date '+%Y%m%d%H%M%S')"
-    if [ "$DRY_RUN" -eq 1 ]; then
-        log "[dry-run] 备份 README 到: $backup_file"
-    else
-        cp "$README_FILE" "$backup_file"
-    fi
-
     log "生成 README.md..."
 
     if [ "$DRY_RUN" -eq 1 ]; then
@@ -193,6 +186,50 @@ README_HEAD
 
     declare -A SKILL_DESCRIPTIONS=()
     declare -A SKILL_TRIGGERS=()
+    declare -A TRIGGERS_ZH=()
+    declare -A DESCRIPTIONS_ZH=()
+
+    TRIGGERS_ZH["brainstorming"]="需求澄清、方案构思、设计讨论"
+    TRIGGERS_ZH["writing-plans"]="多步骤任务、实施计划拆解"
+    TRIGGERS_ZH["executing-plans"]="按既定计划落地执行"
+    TRIGGERS_ZH["test-driven-development"]="先写测试、再实现功能"
+    TRIGGERS_ZH["using-git-worktrees"]="需要隔离分支并行开发"
+    TRIGGERS_ZH["git-workflow"]="提交、分支、PR 流程"
+    TRIGGERS_ZH["using-superpowers"]="会话开始、技能选择"
+    TRIGGERS_ZH["systematic-debugging"]="故障排查、异常定位"
+    TRIGGERS_ZH["receiving-code-review"]="处理代码评审意见"
+    TRIGGERS_ZH["gh-fix-ci"]="修复 GitHub Actions 失败"
+    TRIGGERS_ZH["technical-writer"]="技术文档、使用指南、API 文档"
+    TRIGGERS_ZH["content-creator"]="博客、社媒、营销文案"
+    TRIGGERS_ZH["summarize"]="总结 URL、视频、文稿"
+    TRIGGERS_ZH["deep-research"]="深度调研、多来源分析"
+    TRIGGERS_ZH["browse"]="网页 QA、交互验证、截图取证"
+    TRIGGERS_ZH["docx"]="Word 文档创建与编辑"
+    TRIGGERS_ZH["pdf"]="PDF 读取、合并、拆分、OCR"
+    TRIGGERS_ZH["xlsx"]="表格清洗、编辑、生成"
+    TRIGGERS_ZH["flowchart-generator-skill"]="自然语言生成流程图"
+    TRIGGERS_ZH["self-improving-agent"]="失败复盘、能力改进"
+
+    DESCRIPTIONS_ZH["brainstorming"]="在实现前先梳理目标、约束和方案取舍。"
+    DESCRIPTIONS_ZH["writing-plans"]="把需求拆成可执行的阶段性计划与里程碑。"
+    DESCRIPTIONS_ZH["executing-plans"]="依据现有计划逐步执行并在检查点汇报。"
+    DESCRIPTIONS_ZH["test-driven-development"]="采用测试先行方式实现功能并降低回归风险。"
+    DESCRIPTIONS_ZH["using-git-worktrees"]="创建独立工作树，避免与当前改动互相干扰。"
+    DESCRIPTIONS_ZH["git-workflow"]="规范化分支、提交与 PR 协作流程。"
+    DESCRIPTIONS_ZH["using-superpowers"]="帮助识别并调用最合适的技能工作流。"
+    DESCRIPTIONS_ZH["systematic-debugging"]="按系统化步骤定位根因并验证修复效果。"
+    DESCRIPTIONS_ZH["receiving-code-review"]="评估评审建议并严谨地落地改动。"
+    DESCRIPTIONS_ZH["gh-fix-ci"]="分析 CI 日志并修复 PR 检查失败。"
+    DESCRIPTIONS_ZH["technical-writer"]="产出清晰的技术说明、教程和参考文档。"
+    DESCRIPTIONS_ZH["content-creator"]="面向目标受众生成更有传播力的内容。"
+    DESCRIPTIONS_ZH["summarize"]="从链接或本地文件提取重点并输出摘要。"
+    DESCRIPTIONS_ZH["deep-research"]="整合多方信息并给出带引用的研究结论。"
+    DESCRIPTIONS_ZH["browse"]="通过无头浏览器完成页面测试与状态校验。"
+    DESCRIPTIONS_ZH["docx"]="创建、修改与重排 .docx 文档内容。"
+    DESCRIPTIONS_ZH["pdf"]="处理 PDF 文本、页面结构和文档转换任务。"
+    DESCRIPTIONS_ZH["xlsx"]="处理 .xlsx/.csv 数据并生成结构化表格文件。"
+    DESCRIPTIONS_ZH["flowchart-generator-skill"]="把自然语言描述转换为结构化 SVG 流程图。"
+    DESCRIPTIONS_ZH["self-improving-agent"]="记录失败经验并持续优化执行策略。"
 
     local skill_dir skill_name metadata
     shopt -s nullglob
@@ -224,8 +261,8 @@ README_HEAD
             if [ -f "$TARGET_DIR/$skill/SKILL.md" ]; then
                 local skill_link triggers description
                 skill_link="[$skill](#$skill)"
-                triggers="${SKILL_TRIGGERS[$skill]:-}"
-                description="${SKILL_DESCRIPTIONS[$skill]:-暂无描述}"
+                triggers="${TRIGGERS_ZH[$skill]:-${SKILL_TRIGGERS[$skill]:-提到该技能名或相关任务场景}}"
+                description="${DESCRIPTIONS_ZH[$skill]:-${SKILL_DESCRIPTIONS[$skill]:-暂无描述}}"
                 description=$(echo "$description" | sed 's/|/,/g' | head -c 100)
                 echo "| $skill_link | $triggers | - | $description |" >> "$README_FILE"
             fi
@@ -246,7 +283,11 @@ commit_changes() {
         return
     fi
 
-    git -C "$TARGET_DIR" add -A
+    git -C "$TARGET_DIR" add -A -- . ':(exclude)CLAUDE.md' ':(exclude).sync*'
+    if git -C "$TARGET_DIR" diff --cached --quiet; then
+        log "没有可提交变更（已排除 CLAUDE.md 和 .sync*）"
+        return
+    fi
     git -C "$TARGET_DIR" commit -m "Auto sync skills from codex - $(date '+%Y-%m-%d %H:%M:%S')"
     log "推送到远程..."
     git -C "$TARGET_DIR" push origin main
