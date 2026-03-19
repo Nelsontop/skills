@@ -3,3 +3,5 @@ CLAUDE.md
 .sync*
 sync.log
 README.md.bak*
+
+sync-skills.sh
