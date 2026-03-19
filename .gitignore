@@ -1,0 +1,5 @@
+# Local-only operational files
+CLAUDE.md
+.sync*
+sync.log
+README.md.bak*
