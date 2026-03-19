@@ -1,4 +1,0 @@
-version: 1
-display_name: CLS News Monitor
-short_description: Query cls.cn finance news, summarize it in plain text, or generate finance-style morning-brief images and deliver them through Feishu.
-default_prompt: Use the local cls-cli project to search cls.cn or fetch the latest finance telegraphs. Present summaries in concise plain text by default and avoid Markdown tables unless the user explicitly asks for them. For morning-brief or image-style requests, default to generating a finance-style poster and proactively send it via Feishu app bot when credentials and target chat are available. Reuse established visual style across revisions unless the user asks to change it.
