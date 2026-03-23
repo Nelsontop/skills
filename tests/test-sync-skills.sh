@@ -80,3 +80,65 @@ if ls "$TARGET_DIR"/README.md.bak.* >/dev/null 2>&1; then
 fi
 
 echo "PASS"
+
+COMMIT_WORK_DIR="$(mktemp -d)"
+COMMIT_SOURCE_DIR="$COMMIT_WORK_DIR/source"
+COMMIT_TARGET_DIR="$COMMIT_WORK_DIR/target"
+COMMIT_REMOTE_DIR="$COMMIT_WORK_DIR/remote.git"
+COMMIT_README_FILE="$COMMIT_TARGET_DIR/README.md"
+COMMIT_LOG_FILE="$COMMIT_TARGET_DIR/sync.log"
+
+cleanup_commit() {
+    rm -rf "$COMMIT_WORK_DIR"
+}
+trap cleanup_commit EXIT
+
+mkdir -p "$COMMIT_SOURCE_DIR/alpha" "$COMMIT_TARGET_DIR"
+
+cat > "$COMMIT_SOURCE_DIR/alpha/SKILL.md" <<'SK3'
+---
+description: Use when alpha workflows
+---
+SK3
+
+cat > "$COMMIT_README_FILE" <<'R1'
+# placeholder
+R1
+
+SOURCE_DIR="$COMMIT_SOURCE_DIR" \
+TARGET_DIR="$COMMIT_TARGET_DIR" \
+README_FILE="$COMMIT_README_FILE" \
+LOG_FILE="$COMMIT_LOG_FILE" \
+bash "$ROOT_DIR/sync-skills.sh" --no-git >/dev/null
+
+git init --bare "$COMMIT_REMOTE_DIR" >/dev/null
+git -C "$COMMIT_TARGET_DIR" init -b main >/dev/null
+git -C "$COMMIT_TARGET_DIR" config user.name "Test User"
+git -C "$COMMIT_TARGET_DIR" config user.email "test@example.com"
+git -C "$COMMIT_TARGET_DIR" remote add origin "$COMMIT_REMOTE_DIR"
+git -C "$COMMIT_TARGET_DIR" add README.md alpha/SKILL.md
+git -C "$COMMIT_TARGET_DIR" commit -m "Initial commit" >/dev/null
+git -C "$COMMIT_TARGET_DIR" push -u origin main >/dev/null
+
+echo "staged-only-change" > "$COMMIT_TARGET_DIR/note.txt"
+git -C "$COMMIT_TARGET_DIR" add note.txt
+BEFORE_COMMIT_COUNT=$(git -C "$COMMIT_TARGET_DIR" rev-list --count HEAD)
+
+SOURCE_DIR="$COMMIT_SOURCE_DIR" \
+TARGET_DIR="$COMMIT_TARGET_DIR" \
+README_FILE="$COMMIT_README_FILE" \
+LOG_FILE="$COMMIT_LOG_FILE" \
+bash "$ROOT_DIR/sync-skills.sh"
+
+AFTER_COMMIT_COUNT=$(git -C "$COMMIT_TARGET_DIR" rev-list --count HEAD)
+if [ "$AFTER_COMMIT_COUNT" -le "$BEFORE_COMMIT_COUNT" ]; then
+    echo "FAIL: staged-only changes should be committed"
+    exit 1
+fi
+
+if ! git -C "$COMMIT_TARGET_DIR" diff --cached --quiet; then
+    echo "FAIL: staged-only changes should not remain in index after sync commit"
+    exit 1
+fi
+
+echo "PASS: staged-only changes are committed"
