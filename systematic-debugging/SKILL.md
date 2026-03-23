@@ -1,6 +1,8 @@
 ---
 name: systematic-debugging
 description: Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes
+repo: https://github.com/obra/superpowers
+repo_ref: main
 ---
 
 # Systematic Debugging

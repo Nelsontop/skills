@@ -1,6 +1,8 @@
 ---
 name: executing-plans
 description: Use when you have a written implementation plan to execute in a separate session with review checkpoints
+repo: https://github.com/obra/superpowers
+repo_ref: main
 ---
 
 # Executing Plans
