@@ -5,3 +5,4 @@ sync.log
 README.md.bak*
 
 sync-skills.sh
+tests/test-sync-skills.sh

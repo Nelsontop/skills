@@ -1,0 +1,7 @@
+interface:
+  display_name: "小红书批量发布"
+  short_description: "小红书备忘录出图、飞书送审、发帖与信号回填流程"
+  default_prompt: "Use $xhs-content-batch-publisher to run a Xiaohongshu content batch from memo-style asset generation through Feishu review, publishing, and signal logging."
+
+policy:
+  allow_implicit_invocation: true
