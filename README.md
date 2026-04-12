@@ -17,35 +17,35 @@
 
 | 技能名 | 触发关键字 | 使用场景 | 功能描述 | 仓库地址 |
 |---|---|---|---|---|
-| [brainstorming](#brainstorming) | 需求澄清、方案构思、设计讨论 | - | 在实现前先梳理目标、约束和方案取舍。 | [仓库](https://github.com/obra/superpowers) |
-| [writing-plans](#writing-plans) | 多步骤任务、实施计划拆解 | - | 把需求拆成可执行的阶段性计划与里程碑。 | [仓库](https://github.com/obra/superpowers) |
-| [executing-plans](#executing-plans) | 按既定计划落地执行 | - | 依据现有计划逐步执行并在检查点汇报。 | [仓库](https://github.com/obra/superpowers) |
-| [test-driven-development](#test-driven-development) | 先写测试、再实现功能 | - | 采用测试先行方式实现功能并降低回归风险。 | [仓库](https://github.com/obra/superpowers) |
-| [using-git-worktrees](#using-git-worktrees) | 需要隔离分支并行开发 | - | 创建独立工作树，避免与当前改动互相干扰。 | [仓库](https://github.com/obra/superpowers) |
+| [brainstorming](#brainstorming) | 需求澄清、方案构思、设计讨论 | - | 在实现前先梳理目标、约束和方案取舍。 | - |
+| [writing-plans](#writing-plans) | 多步骤任务、实施计划拆解 | - | 把需求拆成可执行的阶段性计划与里程碑。 | - |
+| [executing-plans](#executing-plans) | 按既定计划落地执行 | - | 依据现有计划逐步执行并在检查点汇报。 | - |
+| [test-driven-development](#test-driven-development) | 先写测试、再实现功能 | - | 采用测试先行方式实现功能并降低回归风险。 | - |
+| [using-git-worktrees](#using-git-worktrees) | 需要隔离分支并行开发 | - | 创建独立工作树，避免与当前改动互相干扰。 | - |
 | [git-workflow](#git-workflow) | 提交、分支、PR 流程 | - | 规范化分支、提交与 PR 协作流程。 | - |
-| [using-superpowers](#using-superpowers) | 会话开始、技能选择 | - | 帮助识别并调用最合适的技能工作流。 | [仓库](https://github.com/obra/superpowers) |
+| [subagent-driven-development](#subagent-driven-development) | executing implementation plans with independent tasks in the current session | - | Use when executing implementation plans with independent tasks in the current session | - |
+| [dispatching-parallel-agents](#dispatching-parallel-agents) | facing 2+ independent tasks that can be worked on without shared state or sequential dependencies | - | Use when facing 2+ independent tasks that can be worked on without shared state or sequential depend | - |
+| [finishing-a-development-branch](#finishing-a-development-branch) | implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup | - | Use when implementation is complete, all tests pass, and you need to decide how to integrate the wor | - |
+| [using-superpowers](#using-superpowers) | 会话开始、技能选择 | - | 帮助识别并调用最合适的技能工作流。 | - |
 
 ## 调试与测试
 
 | 技能名 | 触发关键字 | 使用场景 | 功能描述 | 仓库地址 |
 |---|---|---|---|---|
-| [systematic-debugging](#systematic-debugging) | 故障排查、异常定位 | - | 按系统化步骤定位根因并验证修复效果。 | [仓库](https://github.com/obra/superpowers) |
-| [receiving-code-review](#receiving-code-review) | 处理代码评审意见 | - | 评估评审建议并严谨地落地改动。 | [仓库](https://github.com/obra/superpowers) |
-| [gh-fix-ci](#gh-fix-ci) | 修复 GitHub Actions 失败 | - | 分析 CI 日志并修复 PR 检查失败。 | - |
+| [systematic-debugging](#systematic-debugging) | 故障排查、异常定位 | - | 按系统化步骤定位根因并验证修复效果。 | - |
+| [receiving-code-review](#receiving-code-review) | 处理代码评审意见 | - | 评估评审建议并严谨地落地改动。 | - |
+| [requesting-code-review](#requesting-code-review) | completing tasks, implementing major features, or before merging to verify work meets requirements | - | Use when completing tasks, implementing major features, or before merging to verify work meets requi | - |
 
 ## 文档与内容
 
 | 技能名 | 触发关键字 | 使用场景 | 功能描述 | 仓库地址 |
 |---|---|---|---|---|
 | [technical-writer](#technical-writer) | 技术文档、使用指南、API 文档 | - | 产出清晰的技术说明、教程和参考文档。 | - |
-| [content-creator](#content-creator) | 博客、社媒、营销文案 | - | 面向目标受众生成更有传播力的内容。 | - |
-| [summarize](#summarize) | 总结 URL、视频、文稿 | - | 从链接或本地文件提取重点并输出摘要。 | - |
 
 ## 研究与信息
 
 | 技能名 | 触发关键字 | 使用场景 | 功能描述 | 仓库地址 |
 |---|---|---|---|---|
-| [deep-research](#deep-research) | 深度调研、多来源分析 | - | 整合多方信息并给出带引用的研究结论。 | - |
 
 ## 文件处理
 
@@ -56,5 +56,4 @@
 
 | 技能名 | 触发关键字 | 使用场景 | 功能描述 | 仓库地址 |
 |---|---|---|---|---|
-| [flowchart-generator-skill](#flowchart-generator-skill) | 自然语言生成流程图 | - | 把自然语言描述转换为结构化 SVG 流程图。 | - |
-| [self-improving-agent](#self-improving-agent) | 失败复盘、能力改进 | - | 记录失败经验并持续优化执行策略。 | - |
+

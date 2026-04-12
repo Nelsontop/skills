@@ -1,8 +1,6 @@
 ---
 name: test-driven-development
 description: Use when implementing any feature or bugfix, before writing implementation code
-repo: https://github.com/obra/superpowers
-repo_ref: main
 ---
 
 # Test-Driven Development (TDD)
